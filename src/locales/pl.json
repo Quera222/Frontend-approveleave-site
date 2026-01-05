@@ -1,0 +1,157 @@
+{
+    "login": {
+        "title": "Logowanie",
+        "welcome": "Witaj ponownie! Zaloguj się na swoje konto.",
+        "email": "Adres email",
+        "password": "Hasło",
+        "submit": "Zaloguj się",
+        "register_link": "Nie masz konta? Zarejestruj się",
+        "demo_accounts": "Konta demo:"
+    },
+    "nav": {
+        "dashboard": "Panel główny",
+        "employees": "Pracownicy",
+        "leave_requests": "Wnioski urlopowe",
+        "approvals": "Akceptacje",
+        "my_employees": "Moi pracownicy",
+        "team_requests": "Wnioski zespołu",
+        "profile": "Mój profil",
+        "my_requests": "Moje wnioski",
+        "logout": "Wyloguj"
+    },
+    "common": {
+        "actions": "Akcje",
+        "status": "Status",
+        "save": "Zapisz",
+        "cancel": "Anuluj",
+        "delete": "Usuń",
+        "edit": "Edytuj",
+        "days": "dni",
+        "type": "Typ",
+        "dates": "Daty",
+        "employee": "Pracownik",
+        "loading": "Ładowanie...",
+        "no_data": "Brak danych.",
+        "to": "do"
+    },
+    "status": {
+        "Pending": "Oczekujący",
+        "Approved": "Zatwierdzony",
+        "Rejected": "Odrzucony"
+    },
+    "roles": {
+        "admin": "Administrator",
+        "manager": "Manager",
+        "employee": "Pracownik"
+    },
+    "home": {
+        "welcome": "Cześć {name}!",
+        "subtitle": "Witaj w systemie HR. Co chcesz dzisiaj zrobić?",
+        "manage_employees": "Zarządzaj Pracownikami",
+        "leave_requests": "Wnioski Urlopowe",
+        "approve_leaves": "Zatwierdź Urlopy",
+        "my_employees": "Moi Pracownicy",
+        "team_requests": "Wnioski Zespołu",
+        "submit_leave": "Złóż Wniosek Urlopowy",
+        "my_profile": "Mój Profil",
+        "cards": {
+            "leave_requests": {
+                "title": "Wnioski Urlopowe",
+                "desc": "Przejdź tutaj, aby złożyć nowy wniosek urlopowy lub sprawdzić status swoich obecnych wniosków.",
+                "link": "Przejdź"
+            },
+            "approvals": {
+                "title": "Zatwierdzanie",
+                "desc": "Przejdź tutaj, aby przeglądać i zatwierdzać wnioski urlopowe swojego zespołu.",
+                "link": "Przejdź"
+            },
+            "employees": {
+                "title": "Pracownicy",
+                "desc": "Zarządzaj listą pracowników, dodawaj nowych i edytuj ich dane.",
+                "link": "Przejdź"
+            }
+        },
+        "password_modal": {
+            "title": "Wymagana zmiana hasła",
+            "desc": "To jest Twoje pierwsze logowanie. Ze względów bezpieczeństwa musisz zmienić hasło.",
+            "new_password": "Nowe hasło",
+            "confirm_password": "Potwierdź nowe hasło",
+            "submit": "Zmień hasło",
+            "error_match": "Hasła nie są identyczne.",
+            "error_length": "Hasło musi mieć co najmniej 6 znaków.",
+            "success": "Hasło zostało zmienione pomyślnie.",
+            "error_generic": "Wystąpił błąd podczas zmiany hasła."
+        }
+    },
+    "profile": {
+        "email": "Email:",
+        "role": "Rola:",
+        "contract": "Umowa:",
+        "hours": "Godziny:",
+        "hours_suffix": "/ miesiąc",
+        "leave_balance": "Dostępny urlop:",
+        "change_password": "Zmień hasło",
+        "password_modal": {
+            "title": "Zmiana hasła",
+            "new_password": "Nowe hasło",
+            "confirm_password": "Potwierdź nowe hasło",
+            "submit": "Zapisz nowe hasło",
+            "cancel": "Anuluj"
+        }
+    },
+    "leave_requests": {
+        "title": "Moje wnioski urlopowe",
+        "request_leave": "Złóż wniosek",
+        "submit": "Wyślij wniosek",
+        "history": "Historia",
+        "type_label": "Typ",
+        "start_date": "Data początkowa",
+        "end_date": "Data końcowa",
+        "types": {
+            "Annual": "Wypoczynkowy",
+            "Sick": "Chorobowy",
+            "Unpaid": "Bezpłatny"
+        }
+    },
+    "admin": {
+        "employees": {
+            "title": "Zarządzanie pracownikami",
+            "add_btn": "Dodaj pracownika",
+            "table": {
+                "id": "ID",
+                "name": "Imię i nazwisko",
+                "email": "Email",
+                "role": "Rola",
+                "position": "Stanowisko",
+                "actions": "Akcje"
+            },
+            "modal": {
+                "add_title": "Dodaj pracownika",
+                "edit_title": "Edytuj pracownika",
+                "manager_label": "Manager",
+                "select_manager": "Wybierz Managera",
+                "contract_type": "Typ umowy"
+            },
+            "reset_password": "Resetuj hasło",
+            "reset_confirm": "Czy na pewno chcesz zresetować hasło dla użytkownika {name}?",
+            "reset_success": "Hasło dla użytkownika {name} zostało zresetowane na 'password'. Użytkownik będzie musiał je zmienić przy następnym logowaniu."
+        },
+        "leaves": {
+            "title": "Wszystkie wnioski urlopowe"
+        }
+    },
+    "manager": {
+        "approvals": {
+            "title": "Zatwierdzanie urlopów",
+            "no_pending": "Brak oczekujących wniosków.",
+            "approve": "Zatwierdź",
+            "reject": "Odrzuć"
+        },
+        "employees": {
+            "title": "Moi pracownicy"
+        },
+        "team_requests": {
+            "title": "Wnioski zespołu"
+        }
+    }
+}

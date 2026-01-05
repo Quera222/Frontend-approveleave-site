@@ -1,0 +1,157 @@
+{
+    "login": {
+        "title": "Login",
+        "welcome": "Welcome back! Please login to your account.",
+        "email": "Email address",
+        "password": "Password",
+        "submit": "Sign In",
+        "register_link": "Don't have an account? Register",
+        "demo_accounts": "Demo Accounts:"
+    },
+    "nav": {
+        "dashboard": "Dashboard",
+        "employees": "Employees",
+        "leave_requests": "Leave Requests",
+        "approvals": "Approvals",
+        "my_employees": "My Employees",
+        "team_requests": "Team Requests",
+        "profile": "My Profile",
+        "my_requests": "My Requests",
+        "logout": "Sign out"
+    },
+    "common": {
+        "actions": "Actions",
+        "status": "Status",
+        "save": "Save",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "edit": "Edit",
+        "days": "days",
+        "type": "Type",
+        "dates": "Dates",
+        "employee": "Employee",
+        "loading": "Loading...",
+        "no_data": "No data available.",
+        "to": "to"
+    },
+    "status": {
+        "Pending": "Pending",
+        "Approved": "Approved",
+        "Rejected": "Rejected"
+    },
+    "roles": {
+        "admin": "Admin",
+        "manager": "Manager",
+        "employee": "Employee"
+    },
+    "home": {
+        "welcome": "Hi {name}!",
+        "subtitle": "Welcome to the HR System. What would you like to do today?",
+        "manage_employees": "Manage Employees",
+        "leave_requests": "Leave Requests",
+        "approve_leaves": "Approve Leaves",
+        "my_employees": "My Employees",
+        "team_requests": "Team Requests",
+        "submit_leave": "Submit Leave Request",
+        "my_profile": "My Profile",
+        "cards": {
+            "leave_requests": {
+                "title": "Leave Requests",
+                "desc": "Go here to submit a new leave request or check the status of your current requests.",
+                "link": "Go"
+            },
+            "approvals": {
+                "title": "Approvals",
+                "desc": "Go here to view and approve leave requests from your team.",
+                "link": "Go"
+            },
+            "employees": {
+                "title": "Employees",
+                "desc": "Manage the employee list, add new ones, and edit their data.",
+                "link": "Go"
+            }
+        },
+        "password_modal": {
+            "title": "Password Change Required",
+            "desc": "This is your first login. For security reasons, you must change your password.",
+            "new_password": "New Password",
+            "confirm_password": "Confirm New Password",
+            "submit": "Change Password",
+            "error_match": "Passwords do not match.",
+            "error_length": "Password must be at least 6 characters.",
+            "success": "Password changed successfully.",
+            "error_generic": "An error occurred while changing the password."
+        }
+    },
+    "profile": {
+        "email": "Email:",
+        "role": "Role:",
+        "contract": "Contract:",
+        "hours": "Hours:",
+        "hours_suffix": "/ month",
+        "leave_balance": "Leave Balance:",
+        "change_password": "Change Password",
+        "password_modal": {
+            "title": "Change Password",
+            "new_password": "New Password",
+            "confirm_password": "Confirm New Password",
+            "submit": "Save New Password",
+            "cancel": "Cancel"
+        }
+    },
+    "leave_requests": {
+        "title": "My Leave Requests",
+        "request_leave": "Request Leave",
+        "submit": "Submit Request",
+        "history": "History",
+        "type_label": "Type",
+        "start_date": "Start Date",
+        "end_date": "End Date",
+        "types": {
+            "Annual": "Annual",
+            "Sick": "Sick",
+            "Unpaid": "Unpaid"
+        }
+    },
+    "admin": {
+        "employees": {
+            "title": "Employee Management",
+            "add_btn": "Add Employee",
+            "table": {
+                "id": "ID",
+                "name": "Name",
+                "email": "Email",
+                "role": "Role",
+                "position": "Position",
+                "actions": "Actions"
+            },
+            "modal": {
+                "add_title": "Add Employee",
+                "edit_title": "Edit Employee",
+                "manager_label": "Manager",
+                "select_manager": "Select Manager",
+                "contract_type": "Contract Type"
+            },
+            "reset_password": "Reset Password",
+            "reset_confirm": "Are you sure you want to reset password for {name}?",
+            "reset_success": "Password for {name} has been reset to 'password'. User will be required to change it on next login."
+        },
+        "leaves": {
+            "title": "All Leave Requests"
+        }
+    },
+    "manager": {
+        "approvals": {
+            "title": "Leave Approvals",
+            "no_pending": "No pending requests.",
+            "approve": "Approve",
+            "reject": "Reject"
+        },
+        "employees": {
+            "title": "My Employees"
+        },
+        "team_requests": {
+            "title": "Team Requests"
+        }
+    }
+}
