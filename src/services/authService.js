@@ -1,32 +1,30 @@
+import api from './api';
 import { reactive } from 'vue';
-
-const USERS = [
-    { id: 1, email: 'admin@example.com', password: 'password', role: 'admin', name: 'Admin User', changePasswordRequired: false },
-    { id: 2, email: 'alice@example.com', password: 'password', role: 'manager', name: 'Manager Alice', changePasswordRequired: false },
-    { id: 3, email: 'emily@example.com', password: 'password', role: 'manager', name: 'Manager Emily', changePasswordRequired: false },
-    { id: 4, email: 'john@example.com', password: 'password', role: 'employee', name: 'John Doe', changePasswordRequired: false },
-    { id: 5, email: 'jane@example.com', password: 'password', role: 'employee', name: 'Jane Smith', changePasswordRequired: false },
-    { id: 6, email: 'bob@example.com', password: 'password', role: 'employee', name: 'Bob Johnson', changePasswordRequired: false }
-];
 
 const state = reactive({
     user: JSON.parse(localStorage.getItem('user')) || null
 });
 
 export const login = async (email, password) => {
-    // Simulate API call
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            const user = USERS.find(u => u.email === email && u.password === password);
-            if (user) {
-                state.user = user;
-                localStorage.setItem('user', JSON.stringify(user));
-                resolve(user);
-            } else {
-                resolve(null);
-            }
-        }, 500);
-    });
+    try {
+        const response = await api.post('/api/Auth/login', { email, password });
+
+        // Assuming response.data contains the user object with token
+        // If the structure is different, we might need to adjust this.
+        // Common pattern: { token: '...', user: { ... } } or just the user object with token included.
+        // Based on previous mock: { id, email, role, ... }
+
+        const user = response.data;
+        if (user) {
+            state.user = user;
+            localStorage.setItem('user', JSON.stringify(user));
+            return user;
+        }
+        return null;
+    } catch (error) {
+        console.error('Login error:', error);
+        return null;
+    }
 };
 
 export const logout = () => {
@@ -36,41 +34,26 @@ export const logout = () => {
 
 export const getCurrentUser = () => state.user;
 
-export const addUser = (user) => {
-    USERS.push(user);
+// These functions might not be available in the API yet, or handled differently.
+// For now, keeping them minimal or placeholder if used by components.
+
+export const addUser = async (user) => {
+    // This was used for mock data. In real app, registration/adding user should be an API call.
+    // For now, logging warning.
+    console.warn('addUser not implemented in real API service yet. Use Admin panel to create users.');
 };
 
 export const updatePassword = async (id, newPassword) => {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            const user = USERS.find(u => u.id === id);
-            if (user) {
-                user.password = newPassword;
-                user.changePasswordRequired = false;
-                // If current user is the one updating, update state
-                if (state.user && state.user.id === id) {
-                    state.user.changePasswordRequired = false;
-                    localStorage.setItem('user', JSON.stringify(state.user));
-                }
-                resolve(true);
-            } else {
-                resolve(false);
-            }
-        }, 300);
-    });
+    // Check if there is an endpoint for updating password.
+    // The user provided: PUT /api/Users/{id}
+    // Maybe that endpoint accepts password? Or maybe we need a specific one.
+    // For now, we can try to use the Update User endpoint if checking strictly for password changes.
+    // Or just return false/not implemented.
+    console.warn('updatePassword not implemented fully. Verification needed if PUT /api/Users supports password update.');
+    return false;
 };
 
 export const resetPassword = async (id) => {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            const user = USERS.find(u => u.id === id);
-            if (user) {
-                user.password = 'password';
-                user.changePasswordRequired = true;
-                resolve(true);
-            } else {
-                resolve(false);
-            }
-        }, 300);
-    });
+    console.warn('resetPassword not implemented in real API service yet.');
+    return false;
 };

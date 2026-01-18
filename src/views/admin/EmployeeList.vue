@@ -9,7 +9,8 @@
       <thead>
         <tr>
           <th>{{ $t('admin.employees.table.id') }}</th>
-          <th>{{ $t('admin.employees.table.name') }}</th>
+          <th>{{ $t('admin.employees.table.firstName') }}</th>
+          <th>{{ $t('admin.employees.table.lastName') }}</th>
           <th>{{ $t('admin.employees.table.email') }}</th>
           <th>{{ $t('admin.employees.table.role') }}</th>
           <th>{{ $t('admin.employees.table.position') }}</th>
@@ -19,7 +20,8 @@
       <tbody>
         <tr v-for="employee in employees" :key="employee.id">
           <td>{{ employee.id }}</td>
-          <td>{{ employee.name }}</td>
+          <td>{{ employee.firstName }}</td>
+          <td>{{ employee.lastName }}</td>
           <td>{{ employee.email }}</td>
           <td>
             <span :class="getRoleBadgeClass(employee.role)">{{ $t(`roles.${employee.role}`) }}</span>
@@ -27,7 +29,7 @@
           <td>{{ employee.position }}</td>
           <td>
             <button class="btn btn-sm btn-outline-secondary me-4" @click="openModal(employee)">{{ $t('common.edit') }}</button>
-            <button class="btn btn-sm btn-outline-dark" @click="handleResetPassword(employee.id, employee.name)">{{ $t('admin.employees.reset_password') }}</button>
+            <button class="btn btn-sm btn-outline-dark" @click="handleResetPassword(employee.id, employee.firstName, employee.lastName)">{{ $t('admin.employees.reset_password') }}</button>
           </td>
         </tr>
       </tbody>
@@ -43,9 +45,15 @@
           </div>
           <div class="modal-body">
             <form @submit.prevent="saveEmployee">
-              <div class="mb-3">
-                <label class="form-label">{{ $t('admin.employees.table.name') }}</label>
-                <input type="text" class="form-control" v-model="form.name" required>
+              <div class="row mb-3">
+                <div class="col">
+                  <label class="form-label">{{ $t('admin.employees.table.firstName') }}</label>
+                  <input type="text" class="form-control" v-model="form.firstName" required>
+                </div>
+                <div class="col">
+                  <label class="form-label">{{ $t('admin.employees.table.lastName') }}</label>
+                  <input type="text" class="form-control" v-model="form.lastName" required>
+                </div>
               </div>
               <div class="mb-3">
                 <label class="form-label">{{ $t('admin.employees.table.email') }}</label>
@@ -65,7 +73,7 @@
                 <select class="form-select" v-model="form.managerId" required>
                   <option value="" disabled>{{ $t('admin.employees.modal.select_manager') }}</option>
                   <option v-for="manager in managers" :key="manager.id" :value="manager.id">
-                    {{ manager.name }}
+                    {{ manager.firstName }} {{ manager.lastName }}
                   </option>
                 </select>
               </div>
@@ -113,7 +121,8 @@ const currentUser = getCurrentUser();
 
 const form = reactive({
   id: null,
-  name: '',
+  firstName: '',
+  lastName: '',
   email: '',
   role: 'employee',
   position: '',
@@ -138,7 +147,8 @@ const openModal = (employee = null) => {
     isEditing.value = false;
     Object.assign(form, {
       id: null,
-      name: '',
+      firstName: '',
+      lastName: '',
       email: '',
       role: 'employee',
       position: '',
@@ -165,10 +175,10 @@ const saveEmployee = async () => {
   await loadEmployees();
 };
 
-const handleResetPassword = async (id, name) => {
-    if (confirm(`Are you sure you want to reset password for ${name}?`)) {
+const handleResetPassword = async (id, firstName, lastName) => {
+    if (confirm(`Are you sure you want to reset password for ${firstName} ${lastName}?`)) {
         await resetPassword(id);
-        alert(`Password for ${name} has been reset to 'password'. User will be required to change it on next login.`);
+        alert(`Password for ${firstName} ${lastName} has been reset to 'password'. User will be required to change it on next login.`);
     }
 };
 

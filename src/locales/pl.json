@@ -119,7 +119,8 @@
             "add_btn": "Dodaj pracownika",
             "table": {
                 "id": "ID",
-                "name": "Imię i nazwisko",
+                "firstName": "Imię",
+                "lastName": "Nazwisko",
                 "email": "Email",
                 "role": "Rola",
                 "position": "Stanowisko",

@@ -119,7 +119,8 @@
             "add_btn": "Add Employee",
             "table": {
                 "id": "ID",
-                "name": "Name",
+                "firstName": "First Name",
+                "lastName": "Last Name",
                 "email": "Email",
                 "role": "Role",
                 "position": "Position",
