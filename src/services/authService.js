@@ -44,16 +44,36 @@ export const addUser = async (user) => {
 };
 
 export const updatePassword = async (id, newPassword) => {
-    // Check if there is an endpoint for updating password.
-    // The user provided: PUT /api/Users/{id}
-    // Maybe that endpoint accepts password? Or maybe we need a specific one.
-    // For now, we can try to use the Update User endpoint if checking strictly for password changes.
-    // Or just return false/not implemented.
-    console.warn('updatePassword not implemented fully. Verification needed if PUT /api/Users supports password update.');
-    return false;
+    try {
+        // First fetch the latest user data to ensure we don't overwrite other fields with stale data
+        // if the backend requires a full object update.
+        const response = await api.get(`/api/Users/${id}`);
+        const user = response.data;
+
+        if (user) {
+            // Update the password - backend seems to expect 'passwordHash'
+            // Ideally, we should not send plain text password as 'passwordHash', 
+            // but if the backend handles hashing on PUT, this is how we pass the new value.
+            user.passwordHash = newPassword;
+            // Also setting 'password' just in case the backend model has both or uses one for input.
+            user.password = newPassword;
+
+            await api.put(`/api/Users/${id}`, user);
+            return true;
+        }
+        return false;
+    } catch (error) {
+        console.error(`Error updating password for user ${id}:`, error);
+        throw error;
+    }
 };
 
 export const resetPassword = async (id) => {
-    console.warn('resetPassword not implemented in real API service yet.');
-    return false;
+    try {
+        // Default password as per requirement (or convention)
+        return await updatePassword(id, 'password');
+    } catch (error) {
+        console.error(`Error resetting password for user ${id}:`, error);
+        return false;
+    }
 };

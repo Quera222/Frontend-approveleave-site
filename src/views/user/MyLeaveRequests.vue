@@ -9,7 +9,7 @@
           <div class="row">
             <div class="col-md-4 mb-3">
               <label class="form-label">{{ $t('leave_requests.type_label') }}</label>
-              <select class="form-select" v-model="form.type" required>
+              <select class="form-select" v-model="form.leaveType" required>
                 <option value="Annual">{{ $t('leave_requests.types.Annual') }}</option>
                 <option value="Sick">{{ $t('leave_requests.types.Sick') }}</option>
                 <option value="Unpaid">{{ $t('leave_requests.types.Unpaid') }}</option>
@@ -41,7 +41,7 @@
       </thead>
       <tbody>
         <tr v-for="request in requests" :key="request.id">
-          <td>{{ $t(`leave_requests.types.${request.type}`) }}</td>
+          <td>{{ $t('leave_requests.types.' + request.leaveType) }}</td>
           <td>{{ request.startDate }} {{ $t('common.to') }} {{ request.endDate }}</td>
           <td>{{ request.days }}</td>
           <td>
@@ -60,7 +60,7 @@ import { getLeavesByUserId, createLeaveRequest } from '../../services/leaveServi
 
 const requests = ref([]);
 const form = reactive({
-  type: 'Annual',
+  leaveType: 'Annual',
   startDate: '',
   endDate: ''
 });
@@ -84,8 +84,9 @@ const submitRequest = async () => {
 
   const newRequest = {
     userId: user.id,
-    userName: user.name,
-    type: form.type,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    leaveType: form.leaveType,
     startDate: form.startDate,
     endDate: form.endDate,
     days: days

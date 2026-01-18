@@ -4,9 +4,9 @@
       <div class="card-body text-center">
         <div class="mb-4">
             <div class="avatar-placeholder bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3">
-                <span class="fs-2">{{ employee.name.charAt(0) }}</span>
+                <span class="fs-2">{{ employee.firstName ? employee.firstName.charAt(0) : '' }}</span>
             </div>
-            <h3 class="card-title mb-1">{{ employee.name }}</h3>
+            <h3 class="card-title mb-1">{{ employee.firstName }} {{ employee.lastName }}</h3>
             <p class="text-muted mb-0">{{ employee.position }}</p>
         </div>
         
@@ -25,7 +25,7 @@
             </div>
             <div class="row mb-2">
                 <div class="col-5 text-muted">{{ $t('profile.hours') }}</div>
-                <div class="col-7 fw-medium">{{ employee.hours }} {{ $t('profile.hours_suffix') }}</div>
+                <div class="col-7 fw-medium">{{ employee.monthlyHours }} {{ $t('profile.hours_suffix') }}</div>
             </div>
             <div class="row" v-if="employee.role !== 'manager'">
                 <div class="col-5 text-muted">{{ $t('profile.leave_balance') }}</div>
@@ -106,7 +106,7 @@ onMounted(async () => {
     if (employee.value && employee.value.role !== 'manager') {
         const leaves = await getLeavesByUserId(user.id);
         const approvedDays = leaves
-            .filter(l => l.status === 'Approved' && l.type !== 'Sick')
+            .filter(l => l.status === 'Approved' && l.leaveType === 'Annual')
             .reduce((sum, l) => sum + l.days, 0);
         
         // Assuming initial balance is in employee.leaveBalance (e.g. 20 or 26)

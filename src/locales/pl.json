@@ -32,7 +32,9 @@
         "employee": "Pracownik",
         "loading": "Ładowanie...",
         "no_data": "Brak danych.",
-        "to": "do"
+        "to": "do",
+        "firstname": "Imię",
+        "lastname": "Nazwisko"
     },
     "status": {
         "Pending": "Oczekujący",

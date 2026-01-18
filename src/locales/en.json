@@ -32,7 +32,9 @@
         "employee": "Employee",
         "loading": "Loading...",
         "no_data": "No data available.",
-        "to": "to"
+        "to": "to",
+        "firstname": "First Name",
+        "lastname": "Last Name"
     },
     "status": {
         "Pending": "Pending",

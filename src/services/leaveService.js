@@ -33,19 +33,10 @@ export const createLeaveRequest = async (request) => {
 
 export const updateLeaveStatus = async (id, status) => {
     try {
-        // The endpoint is PUT /api/Leaves/{id}/status
-        // It likely expects the status in the body, maybe as a string or object.
-        // Assuming JSON body with status property, or just the string if it's a simple controller action.
-        // Let's try sending it as a JSON string first (standard for FromBody with simple types) or object.
-        // If it's `[FromBody] string status`, then standard axios post might need correct content-type or quotes.
-        // Safest is often an object: { status: '...' } if the backend expects a DTO.
-        // But simply, let's assume it takes the status in the URL or Body.
-        // The user specified: PUT /api/Leaves/{id}/status
-        // Common pattern: PUT /api/Leaves/1/status?status=Approved Or body.
-
-        // I will attempt to send it in the body.
-        const response = await api.put(`/api/Leaves/${id}/status`, JSON.stringify(status), {
-            headers: { 'Content-Type': 'application/json' }
+        // Changing to query parameter as body apparently didn't work.
+        // Pattern: PUT /api/Leaves/{id}/status?status=Approved
+        const response = await api.put(`/api/Leaves/${id}/status`, null, {
+            params: { status: status }
         });
         return response.data;
     } catch (error) {

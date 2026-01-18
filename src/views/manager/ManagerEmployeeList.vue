@@ -8,7 +8,8 @@
       <thead>
         <tr>
           <th>{{ $t('admin.employees.table.id') }}</th>
-          <th>{{ $t('admin.employees.table.name') }}</th>
+          <th>{{ $t('admin.employees.table.firstName') }}</th>
+          <th>{{ $t('admin.employees.table.lastName') }}</th>
           <th>{{ $t('admin.employees.table.email') }}</th>
           <th>{{ $t('admin.employees.table.role') }}</th>
           <th>{{ $t('admin.employees.table.position') }}</th>
@@ -17,7 +18,8 @@
       <tbody>
         <tr v-for="employee in employees" :key="employee.id">
           <td>{{ employee.id }}</td>
-          <td>{{ employee.name }}</td>
+          <td>{{ employee.firstName }}</td>
+          <td>{{ employee.lastName }}</td>
           <td>{{ employee.email }}</td>
           <td>
             <span :class="getRoleBadgeClass(employee.role)">{{ $t(`roles.${employee.role}`) }}</span>

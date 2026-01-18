@@ -5,7 +5,8 @@
       <thead>
         <tr>
           <th>{{ $t('admin.employees.table.id') }}</th>
-          <th>{{ $t('common.employee') }}</th>
+          <th>{{ $t('common.firstname') }}</th>
+          <th>{{ $t('common.lastname') }}</th>
           <th>{{ $t('common.type') }}</th>
           <th>{{ $t('common.dates') }}</th>
           <th>{{ $t('common.days') }}</th>
@@ -15,8 +16,9 @@
       <tbody>
         <tr v-for="request in requests" :key="request.id">
           <td>{{ request.id }}</td>
-          <td>{{ request.userName }}</td>
-          <td>{{ $t(`leave_requests.types.${request.type}`) }}</td>
+          <td>{{ request.firstName }}</td>
+          <td>{{ request.lastName }}</td>
+          <td>{{ $t('leave_requests.types.' + request.leaveType) }}</td>
           <td>{{ request.startDate }} {{ $t('common.to') }} {{ request.endDate }}</td>
           <td>{{ request.days }}</td>
           <td>
