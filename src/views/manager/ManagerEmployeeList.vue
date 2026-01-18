@@ -22,7 +22,7 @@
           <td>{{ employee.lastName }}</td>
           <td>{{ employee.email }}</td>
           <td>
-            <span :class="getRoleBadgeClass(employee.role)">{{ $t(`roles.${employee.role}`) }}</span>
+            <span :class="getRoleBadgeClass(employee.role)">{{ $t('roles.' + employee.role) }}</span>
           </td>
           <td>{{ employee.position }}</td>
         </tr>
