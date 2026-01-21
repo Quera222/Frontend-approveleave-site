@@ -42,8 +42,8 @@
       <tbody>
         <tr v-for="request in requests" :key="request.id">
           <td>{{ $t('leave_requests.types.' + request.leaveType) }}</td>
-          <td>{{ request.startDate }} {{ $t('common.to') }} {{ request.endDate }}</td>
-          <td>{{ request.days }}</td>
+          <td>{{ formatDate(request.startDate) }} {{ $t('common.to') }} {{ formatDate(request.endDate) }}</td>
+          <td>{{ request.daysCount }}</td>
           <td>
             <span :class="getStatusBadgeClass(request.status)">{{ $t(`status.${request.status}`) }}</span>
           </td>
@@ -107,6 +107,11 @@ const getStatusBadgeClass = (status) => {
     case 'Rejected': return 'badge bg-danger';
     default: return 'badge bg-warning text-dark';
   }
+};
+
+const formatDate = (dateString) => {
+  if (!dateString) return '';
+  return dateString.split('T')[0];
 };
 
 onMounted(() => {

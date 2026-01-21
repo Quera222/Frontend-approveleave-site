@@ -95,6 +95,7 @@
         "change_password": "Zmień hasło",
         "password_modal": {
             "title": "Zmiana hasła",
+            "old_password": "Stare hasło",
             "new_password": "Nowe hasło",
             "confirm_password": "Potwierdź nowe hasło",
             "submit": "Zapisz nowe hasło",

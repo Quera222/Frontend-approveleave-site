@@ -15,8 +15,8 @@
       </thead>
       <tbody>
         <tr v-for="request in requests" :key="request.id">
-          <td>{{ request.firstName }}</td>
-          <td>{{ request.lastName }}</td>
+          <td>{{ request.user.firstName }}</td>
+          <td>{{ request.user.lastName }}</td>
           <td>{{ $t('leave_requests.types.' + request.leaveType) }}</td>
           <td>{{ request.startDate }} {{ $t('common.to') }} {{ request.endDate }}</td>
           <td>{{ request.days }}</td>

@@ -44,6 +44,10 @@
                 </div>
                 <form @submit.prevent="handleChangePassword">
                     <div class="mb-3">
+                        <label class="form-label small text-muted">{{ $t('profile.password_modal.old_password') }}</label>
+                        <input type="password" class="form-control" v-model="oldPassword" required>
+                    </div>
+                    <div class="mb-3">
                         <label class="form-label small text-muted">{{ $t('profile.password_modal.new_password') }}</label>
                         <input type="password" class="form-control" v-model="newPassword" required minlength="6">
                     </div>
@@ -84,11 +88,12 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { getCurrentUser, updatePassword } from '../../services/authService';
+import { getCurrentUser, updatePassword, changeUserPassword } from '../../services/authService';
 import { getEmployeeById } from '../../services/employeeService';
 import { getLeavesByUserId } from '../../services/leaveService';
 
 const employee = ref(null);
+const oldPassword = ref('');
 const newPassword = ref('');
 const confirmPassword = ref('');
 const message = ref('');
@@ -107,11 +112,9 @@ onMounted(async () => {
         const leaves = await getLeavesByUserId(user.id);
         const approvedDays = leaves
             .filter(l => l.status === 'Approved' && l.leaveType === 'Annual')
-            .reduce((sum, l) => sum + l.days, 0);
+            .reduce((sum, l) => sum + (l.daysCount || 0), 0);
         
-        // Assuming initial balance is in employee.leaveBalance (e.g. 20 or 26)
-        // If not present, default to 20 or 26 based on contract? 
-        // For now use employee.leaveBalance from mock data.
+        // Use leaveBalance from top-level employee object (as per "All users" endpoint structure)
         const initialBalance = employee.value.leaveBalance || 26; 
         calculatedLeaveBalance.value = initialBalance - approvedDays;
     }
@@ -141,8 +144,9 @@ const handleChangePassword = async () => {
     }
 
     try {
-        await updatePassword(currentUser.value.id, newPassword.value);
+        await changeUserPassword(currentUser.value.id, oldPassword.value, newPassword.value);
         message.value = 'Hasło zostało zmienione.';
+        oldPassword.value = '';
         newPassword.value = '';
         confirmPassword.value = '';
         // Optional: hide form after success? User might want to see the success message.

@@ -77,3 +77,16 @@ export const resetPassword = async (id) => {
         return false;
     }
 };
+export const changeUserPassword = async (userId, oldPassword, newPassword) => {
+    try {
+        const response = await api.post(`/api/Auth/changePassword`, {
+            userId: userId,
+            oldPassword: oldPassword,
+            newPassword: newPassword
+        });
+        return response.data;
+    } catch (error) {
+        console.error(`Error changing password for user ${userId}:`, error);
+        throw error;
+    }
+};

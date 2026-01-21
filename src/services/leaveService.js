@@ -59,8 +59,8 @@ export const getLeavesByManagerId = async (managerId) => {
     try {
         const myEmployees = await getEmployeesByManagerId(managerId);
         const myEmployeeIds = myEmployees.map(e => e.id);
-        const allLeaves = await getAllLeaves(); // Optimization: backend should ideally support filtering
-        return allLeaves.filter(l => myEmployeeIds.includes(l.userId));
+        const allLeaves = await getAllLeaves();
+        return allLeaves.filter(l => myEmployeeIds.includes(l.user.id));
     } catch (error) {
         console.error(`Error fetching leaves for manager ${managerId}:`, error);
         return [];
@@ -72,7 +72,7 @@ export const getPendingLeavesByManagerId = async (managerId) => {
         const myEmployees = await getEmployeesByManagerId(managerId);
         const myEmployeeIds = myEmployees.map(e => e.id);
         const allLeaves = await getAllLeaves();
-        return allLeaves.filter(l => myEmployeeIds.includes(l.userId) && l.status === 'Pending');
+        return allLeaves.filter(l => myEmployeeIds.includes(l.user.id) && l.status === 'Pending');
     } catch (error) {
         console.error(`Error fetching pending leaves for manager ${managerId}:`, error);
         return [];
