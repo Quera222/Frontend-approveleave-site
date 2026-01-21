@@ -4,7 +4,6 @@
     <table class="table table-striped mt-3">
       <thead>
         <tr>
-          <th>{{ $t('admin.employees.table.id') }}</th>
           <th>{{ $t('common.firstname') }}</th>
           <th>{{ $t('common.lastname') }}</th>
           <th>{{ $t('common.type') }}</th>
@@ -15,7 +14,6 @@
       </thead>
       <tbody>
         <tr v-for="request in requests" :key="request.id">
-          <td>{{ request.id }}</td>
           <td>{{ request.user.firstName }}</td>
           <td>{{ request.user.lastName }}</td>
           <td>{{ $t('leave_requests.types.' + request.leaveType) }}</td>

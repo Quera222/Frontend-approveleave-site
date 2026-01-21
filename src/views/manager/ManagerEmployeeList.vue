@@ -7,7 +7,6 @@
     <table class="table table-striped table-hover">
       <thead>
         <tr>
-          <th>{{ $t('admin.employees.table.id') }}</th>
           <th>{{ $t('admin.employees.table.firstName') }}</th>
           <th>{{ $t('admin.employees.table.lastName') }}</th>
           <th>{{ $t('admin.employees.table.email') }}</th>
@@ -17,7 +16,6 @@
       </thead>
       <tbody>
         <tr v-for="employee in employees" :key="employee.id">
-          <td>{{ employee.id }}</td>
           <td>{{ employee.firstName }}</td>
           <td>{{ employee.lastName }}</td>
           <td>{{ employee.email }}</td>
