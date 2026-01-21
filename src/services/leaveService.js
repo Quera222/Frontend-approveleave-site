@@ -31,6 +31,16 @@ export const createLeaveRequest = async (request) => {
     }
 };
 
+export const deleteLeaveRequest = async (id) => {
+    try {
+        await api.delete(`/api/Leaves/${id}`);
+        return true;
+    } catch (error) {
+        console.error(`Error deleting leave request ${id}:`, error);
+        return false;
+    }
+};
+
 export const updateLeaveStatus = async (id, status) => {
     try {
         // Changing to query parameter as body apparently didn't work.

@@ -62,6 +62,11 @@ export const updateEmployee = async (id, employee) => {
 };
 
 export const deleteEmployee = async (id) => {
-    console.warn('deleteEmployee: Backend does not provide a delete user endpoint.');
-    return false;
+    try {
+        await api.delete(`/api/Users/${id}`);
+        return true;
+    } catch (error) {
+        console.error(`Error deleting employee ${id}:`, error);
+        return false;
+    }
 };

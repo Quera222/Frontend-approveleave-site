@@ -10,6 +10,7 @@
           <th>{{ $t('common.dates') }}</th>
           <th>{{ $t('common.days') }}</th>
           <th>{{ $t('common.status') }}</th>
+          <th>{{ $t('common.actions') }}</th>
         </tr>
       </thead>
       <tbody>
@@ -22,6 +23,9 @@
           <td>
             <span :class="getStatusBadgeClass(request.status)">{{ $t(`status.${request.status}`) }}</span>
           </td>
+          <td>
+            <button class="btn btn-sm btn-outline-danger" @click="handleDeleteRequest(request.id)">{{ $t('common.delete') }}</button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -30,13 +34,24 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { getAllLeaves } from '../../services/leaveService';
+import { getAllLeaves, deleteLeaveRequest } from '../../services/leaveService';
 import { getCurrentUser } from '../../services/authService';
 
 const requests = ref([]);
 
 const loadRequests = async () => {
   requests.value = await getAllLeaves();
+};
+
+const handleDeleteRequest = async (id) => {
+    if (confirm('Are you sure you want to delete this leave request?')) {
+        const success = await deleteLeaveRequest(id);
+        if (success) {
+            await loadRequests();
+        } else {
+            alert('Failed to delete leave request.');
+        }
+    }
 };
 
 const getStatusBadgeClass = (status) => {
