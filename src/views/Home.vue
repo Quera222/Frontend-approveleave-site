@@ -180,7 +180,11 @@ const handlePasswordChange = async () => {
     alert('Hasło zostało zmienione pomyślnie. Zostaniesz wylogowany.');
     
     // Logout and redirect
-    await logout(); // Import this if not imported, but it usually is or needs to be.
+    if (user.value) {
+      await logout(user.value.id);
+    } else {
+      await logout();
+    }
     // Assuming logout updates state, but we also need to route.
     // We need to import logout at the top if not present.
     // Checking script setup imports...

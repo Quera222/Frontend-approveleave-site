@@ -72,7 +72,11 @@ const toggleSidebar = () => {
 };
 
 const handleLogout = () => {
-  logout();
+  if (user.value) {
+    logout(user.value.id);
+  } else {
+    logout();
+  }
   router.push('/login');
 };
 </script>

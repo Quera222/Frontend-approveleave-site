@@ -27,9 +27,14 @@ export const login = async (email, password) => {
     }
 };
 
-export const logout = async () => {
+export const logout = async (id) => {
+    // Use the passed id, or fallback to the current user's id in state
+    const userId = id || state.user?.id;
+
     try {
-        await api.post('/api/Auth/logout');
+        if (userId) {
+            await api.post(`/api/Auth/logout/${userId}`);
+        }
     } catch (error) {
         console.error('Logout failed', error);
     } finally {
