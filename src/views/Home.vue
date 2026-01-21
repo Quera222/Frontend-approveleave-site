@@ -102,6 +102,10 @@
             <p class="text-muted">{{ $t('home.password_modal.desc') }}</p>
             <form @submit.prevent="handlePasswordChange">
               <div class="mb-3">
+                <label class="form-label">{{ $t('home.password_modal.old_password') }}</label>
+                <input type="password" class="form-control" v-model="oldPassword" required>
+              </div>
+              <div class="mb-3">
                 <label class="form-label">{{ $t('home.password_modal.new_password') }}</label>
                 <input type="password" class="form-control" v-model="newPassword" required minlength="6">
               </div>
@@ -124,7 +128,7 @@
 
 <script setup>
 import { computed, ref, onMounted, watch } from 'vue';
-import { getCurrentUser, updatePassword } from '../services/authService';
+import { getCurrentUser, updatePassword, changeUserPassword, logout } from '../services/authService';
 import Login from './Login.vue';
 import { Modal } from 'bootstrap';
 
@@ -132,6 +136,7 @@ const user = computed(() => getCurrentUser());
 const passwordModalRef = ref(null);
 let passwordModalInstance = null;
 
+const oldPassword = ref('');
 const newPassword = ref('');
 const confirmPassword = ref('');
 const error = ref('');
@@ -166,12 +171,20 @@ const handlePasswordChange = async () => {
   }
 
   try {
-    await updatePassword(user.value.id, newPassword.value);
+    await changeUserPassword(user.value.id, oldPassword.value, newPassword.value);
     passwordModalInstance.hide();
+    oldPassword.value = '';
     newPassword.value = '';
     confirmPassword.value = '';
     error.value = '';
-    alert('Hasło zostało zmienione pomyślnie.');
+    alert('Hasło zostało zmienione pomyślnie. Zostaniesz wylogowany.');
+    
+    // Logout and redirect
+    await logout(); // Import this if not imported, but it usually is or needs to be.
+    // Assuming logout updates state, but we also need to route.
+    // We need to import logout at the top if not present.
+    // Checking script setup imports...
+    window.location.href = '/login'; 
   } catch (e) {
     error.value = 'Wystąpił błąd podczas zmiany hasła.';
   }

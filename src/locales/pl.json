@@ -76,6 +76,7 @@
         "password_modal": {
             "title": "Wymagana zmiana hasła",
             "desc": "To jest Twoje pierwsze logowanie. Ze względów bezpieczeństwa musisz zmienić hasło.",
+            "old_password": "Stare hasło",
             "new_password": "Nowe hasło",
             "confirm_password": "Potwierdź nowe hasło",
             "submit": "Zmień hasło",

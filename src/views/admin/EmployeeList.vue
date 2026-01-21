@@ -177,8 +177,12 @@ const saveEmployee = async () => {
 
 const handleResetPassword = async (id, firstName, lastName) => {
     if (confirm(`Are you sure you want to reset password for ${firstName} ${lastName}?`)) {
-        await resetPassword(id);
-        alert(`Password for ${firstName} ${lastName} has been reset to 'password'. User will be required to change it on next login.`);
+        const response = await resetPassword(id);
+        if (response && response.status === 200) {
+            alert(response.data.message || 'Password reset successfully.');
+        } else {
+             alert('Something went wrong. Password not reset.');
+        }
     }
 };
 
