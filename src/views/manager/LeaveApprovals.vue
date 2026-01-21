@@ -18,8 +18,8 @@
           <td>{{ request.user.firstName }}</td>
           <td>{{ request.user.lastName }}</td>
           <td>{{ $t('leave_requests.types.' + request.leaveType) }}</td>
-          <td>{{ request.startDate }} {{ $t('common.to') }} {{ request.endDate }}</td>
-          <td>{{ request.days }}</td>
+          <td>{{ formatDate(request.startDate) }} {{ $t('common.to') }} {{ formatDate(request.endDate) }}</td>
+          <td>{{ request.daysCount }}</td>
           <td>
             <button class="btn btn-sm btn-success me-2" @click="handleApproval(request.id, 'Approved')">{{ $t('manager.approvals.approve') }}</button>
             <button class="btn btn-sm btn-danger" @click="handleApproval(request.id, 'Rejected')">{{ $t('manager.approvals.reject') }}</button>
@@ -47,6 +47,11 @@ const loadRequests = async () => {
 const handleApproval = async (id, status) => {
   await updateLeaveStatus(id, status);
   await loadRequests();
+};
+
+const formatDate = (dateString) => {
+  if (!dateString) return '';
+  return dateString.split('T')[0];
 };
 
 onMounted(() => {
