@@ -49,7 +49,7 @@
           </div>
 
           <div class="row g-4">
-            <div class="col-md-6" v-if="user.role === 'manager' || user.role === 'employee'">
+            <div class="col-md-6" v-if="user.role === 'employee'">
                <div class="card h-100 border-0 shadow-sm hover-card" @click="$router.push('/user/leave')">
                  <div class="card-body p-4 text-center">
                    <div class="feature-icon bg-primary bg-gradient text-white rounded-3 mb-3 mx-auto">
