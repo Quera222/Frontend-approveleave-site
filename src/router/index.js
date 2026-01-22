@@ -39,7 +39,7 @@ const routes = [
     path: '/user/profile',
     name: 'UserProfile',
     component: () => import('../views/user/UserProfile.vue'),
-    meta: { requiresAuth: true, roles: ['employee', 'manager', 'admin'] }
+    meta: { requiresAuth: true, roles: ['employee', 'manager'] }
   },
   {
     path: '/user/leave',
